@@ -1,3 +1,3 @@
 # cmx_theme
 
-Custom theme for my ggplot graphs
+R-Markdown Report template & custom theme for my ggplot graphs
