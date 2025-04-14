@@ -1,67 +1,83 @@
 ---
-output: 
-  stevetemplates::article:
-    fig_caption: true
-#bibliography: master.bib
-biblio-style: apsr
-title: "Report Template"
-# thanks: "Replication files are available on the author's Github account (http://github.com/svmiller). **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: svmille@clemson.edu."
-author:
-- name: Andrew
-  # affiliation: Street Child
-abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-
-#keywords: "Report, Template,"
-
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-geometry: margin=1in
-fontfamily: mathpazo
-fontsize: 11pt
-# spacing: double
-endnote: yes
+documentclass: article
+fontsize: 10pt # Options Include 10pt, 11pt, or 12pt
+header-includes:
+- \usepackage{crimson}
+- \usepackage[T1]{fontenc}
+- \usepackage[margin=1in]{geometry}
+- \renewcommand{\baselinestretch}{1}
+- \usepackage{calc}
+- \usepackage{enumitem}
+- \usepackage{changepage}
+output:
+  pdf_document:
+    number_sections: yes # Yes if you wanted numbered sections
+  word_document: default
+urlcolor: blue
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE,
-                      message=FALSE, warning=FALSE,
-                      fig.path='figs/',
-                      cache.path = '_cache/',
-                      fig.process = function(x) {
-                      x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
-                      if (file.rename(x, x2)) x2 else x
-                      })
+<!---Note. This memo template is not intended to work with a Table of Contents. Do Not try to include a table of contents in this template.--->
+<!---THE MEMO HEADER. Edit Only The Text Next to \item--->
+
+\vspace{-85pt}
+\text{\bfseries\LARGE{ENGAGE 2.0: Uganda SEL Data Health Report}}
+\newline
+\vspace{-10pt}
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{-9pt}
+\setlist[2]{noitemsep}
+\begin{description}[leftmargin=!,itemsep=-1ex,labelwidth=\widthof{Subject:  }]
+  \item[Subtitle:] \bfseries{Daily Endline Assessment Brief}
+  \item[By:]Advisory, Street Child 
+  \item[Date:] `r format(Sys.time(), '%B %d, %Y')`
+\end{description}
+\vspace{-10pt}
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+\vspace{-25pt}
+
+<!---THE MEMO BODY. EDITS ALL PLAIN TEXT--->
+
+## Context
+\vspace{-10pt} <!---Adjust space between headers and paragraph text as needed--->
+
+```{r Script, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+# source("Scripts/Quality.R", local = knitr::knit_global())
+library(kableExtra)
 ```
 
 
-```{r AnalysisScript, message=TRUE, warning=FALSE, include=FALSE, paged.print=FALSE}
-#source("Scripts/", local = knitr::knit_global())
-# source("Scripts/", local = knitr::knit_global())
+
+## Header I
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+kbl(Duration, caption = "Survey duration (mins) across enumerators", booktabs = T) %>%
+kable_styling(latex_options=c("striped","hold_position")#,stripe_index = c(3, 11, 13)
+              ) %>%
+  # row_spec (c(3, 11, 13), italic=T, color = "#fba536") %>%
+  column_spec(1, width ="9cm")
 ```
 
-## Header Two
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
- 
-
-```{r baseline-numeracy, echo=FALSE, fig.height=6, fig.width=9, message=FALSE, warning=FALSE, paged.print=FALSE}
-# grid.arrange(bdi.numeracy.baseline.plot, bdi.numeracy.progress.plot) 
+## Header II
+```{r echo=FALSE, fig.height=4, fig.width=9, message=FALSE, warning=FALSE, paged.print=FALSE}
+dr
 ```
 
-## Header Three
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
 
-```{r echo=FALSE, fig.height=6, fig.width=9, message=FALSE, warning=FALSE, paged.print=FALSE}
-```
 
-<!--
-# References
-\setlength{\parindent}{-0.2in}
-\setlength{\leftskip}{0.2in}
-\setlength{\parskip}{8pt}
-\vspace*{-0.2in}
-\noindent
--->
+
+
+
+<!---BELOW ARE YOUR MEMO CITATIONS. ---> 
+<!---Note: Ensure the number of citations below matches the citation marks included above. --->
+
+<!-- [^1]: This is a footnote. You can copy references here and match them to the marks inserts in the plaintext above. -->
+
+<!-- [^2]: NAEP Report Cards - Home. (n.d.). Retrieved March 7, 2018, from https://www.nationsreportcard.gov/# -->
+
+<!-- [^3]: Or maybe they won't?  -->
+
+<!-- [^4]: Religions by Tradition(TR), Religion 2010 (InfoGroup). (n.d.). Social Explorer. Retrieved March 7, 2018, from https://www.socialexplorer.com/tables/Religion_InfoUSA10/R11617373.  -->
+
+<!-- [^5]: Among 15- to 24-year-olds enrolled in grades 10 through 12, percentage who dropped out (event dropout rate), by sex and race/ethnicity: 1972 through 2016. (n.d.). Retrieved March 7, 2018, from https://nces.ed.gov/programs/digest/d17/tables/dt17_219.55.asp?current=yes -->
